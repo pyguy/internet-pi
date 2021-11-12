@@ -19,7 +19,7 @@ monitoring_ping_hosts:  # [URL];[HUMAN_READABLE_NAME]
   - https://www.apple.com/;apple.com
 
 # Shelly Plug configuration. (Also requires `monitoring_enable`)
-shelly_plug_enable: false
+shelly_plug_enable: true
 shelly_plug_hostname: my-shelly-plug-host-or-ip
 shelly_plug_http_username: username
 shelly_plug_http_password: "password"
@@ -33,3 +33,11 @@ airgradient_sensors:
 
 # Starlink configuration. (Also requires `monitoring_enable`)
 starlink_enable: false
+
+# Mikrotik exporter configuration. (Also requires `monitoring_enable`)
+mikrotik_enable: true
+mikrotik_name: MikroTik
+mikrotik_address: router-ip-address
+mikrotik_port: 8728
+mikrotik_user: prometheus
+mikrotik_pass: "change-this-password"

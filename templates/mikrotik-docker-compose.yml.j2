@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+---
+version: "3"
+
+services:
+  mikrotikexp:
+    image: nshttpd/mikrotik-exporter-linux-arm64:1.0.12-DEVEL 
+    volumes:
+      - ./config.yml:/config.yml:ro 
+    ports:
+      - 9436:9436
+    environment:
+      - CONFIG_FILE=/config.yml
+    restart: unless-stopped

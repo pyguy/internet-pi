@@ -1,0 +1,23 @@
+devices:
+  - name: {{ mikrotik_name }}
+    address: {{ mikrotik_address }}
+    port: {{ mikrotik_port }}
+    user: {{ mikrotik_user }}
+    password: {{ mikrotik_pass }}
+    #- name: routers_srv_custom_dns
+    #srv:
+    #  record: _mikrotik2._udp.example.com
+    #  dns:
+    #    address: 1.1.1.1
+    #    port: 53
+    #user: prometheus
+    #password: password_to_all_dns_routers
+
+features:
+  bgp: false
+  dhcp: true
+  dhcpv6: false
+  dhcpl: true
+  routes: true
+  pools: true
+  optics: false
