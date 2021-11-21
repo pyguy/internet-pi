@@ -53,3 +53,7 @@
     - name: Set up Mikrotik Monitoring.
       ansible.builtin.import_tasks: tasks/mikrotik.yml
       when: mikrotik_enable
+
+    - name: Set up Proxmox Monitoring.
+      ansible.builtin.import_tasks: tasks/proxmox.yml
+      when: pve_enable

@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+---
+version: "3"
+
+services:
+  proxmoxexp:
+    image: pyguy/prometheus-pve-exporter 
+    ports:
+      - 9221:9221
+    environment:
+      - PVE_USER={{ pve_user }}
+      - PVE_TOKEN_NAME={{ pve_token_name }}
+      - PVE_TOKEN_VALUE={{ pve_token_secret }}
+      - PVE_VERIFY_SSL={{ pve_verify_ssl }}
+    restart: unless-stopped

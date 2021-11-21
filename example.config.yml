@@ -41,3 +41,11 @@ mikrotik_address: router-ip-address
 mikrotik_port: 8728
 mikrotik_user: prometheus
 mikrotik_pass: "change-this-password"
+
+# Proxmox exporter configuration. (Also requires `monitoring_enable`)
+pve_enable: true
+pve_user: prometheus@pve
+pve_token_name: pve-token-id
+pve_token_secret: pve-token-secret
+pve_target: pve-ip-address
+pve_verify_ssl: false

@@ -1893,11 +1893,6 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "192.168.30.1",
-          "value": "192.168.30.1"
-        },
         "datasource": "prometheus",
         "definition": "label_values(mikrotik_system_uptime,address)",
         "description": null,
