@@ -47,3 +47,10 @@
     build: false
     restarted: true
   become: false
+  
+- name: Restart mercedes-exporter
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/mercedes-exporter/"
+    build: false
+    restarted: true
+  become: false

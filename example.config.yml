@@ -49,3 +49,7 @@ pve_token_name: pve-token-id
 pve_token_secret: pve-token-secret
 pve_target: pve-ip-address
 pve_verify_ssl: false
+
+# MercedeMe A180 exporter configuration. (Also requires `monitoring_enable`)
+mercedes_enable: true
+mercedes_port: 8080

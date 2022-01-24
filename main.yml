@@ -57,3 +57,8 @@
     - name: Set up Proxmox Monitoring.
       ansible.builtin.import_tasks: tasks/proxmox.yml
       when: pve_enable
+
+    - name: Set up Mercedes Monitoring.
+      ansible.builtin.import_tasks: tasks/mercedes.yml
+      tags: mercedes
+      when: mercedes_enable

@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+---
+version: "3"
+
+services:
+  mercedesa180exp:
+    image: pyguy/mercedes-a180-prom-exporter 
+    ports:
+      - {{ mercedes_port }}:{{ mercedes_port }}
+    environment:
+      - EXPORTER_PORT={{ mercedes_port }}
+      - CONFIG_FILE=/app/.mercedesme_config
+      - TOKEN_FILE=/app/.mercedesme_token
+    volumes:
+      - {{ config_dir }}/mercedes-exporter/.mercedesme_config:/app/.mercedesme_config
+      - {{ config_dir }}/mercedes-exporter/.mercedesme_token:/app/.mercedesme_token
+    restart: unless-stopped

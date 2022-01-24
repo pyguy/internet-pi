@@ -1,0 +1,44 @@
+---
+- name: Ensure Mercedes directory exists.
+  file:
+    path: "{{ config_dir }}/mercedes-exporter"
+    state: directory
+    mode: 0755
+  become: false
+
+- name: Copy Mercedes config file to Pi.
+  ansible.builtin.copy:
+    src: files/.mercedesme_config
+    dest: "{{ config_dir }}/mercedes-exporter/.mercedesme_config"
+    mode: '0640'
+  become: false
+  notify: Restart mikrotik-exporter
+
+- name: Copy Mercedes token file to Pi.
+  ansible.builtin.copy:
+    src: files/.mercedesme_token
+    dest: "{{ config_dir }}/mercedes-exporter/.mercedesme_token"
+    mode: '0640'
+  become: false
+  notify: Restart mikrotik-exporter
+
+- name: Copy Mercedes docker-compose template to Pi.
+  ansible.builtin.template:
+    src: templates/mercedes-docker-compose.yml.j2
+    dest: "{{ config_dir }}/mercedes-exporter/docker-compose.yml"
+    mode: '0640'
+  become: false
+  notify: Restart mercedes-exporter
+
+- name: Ensure Mercedes Prometheus exporter is running.
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/mercedes-exporter/"
+    build: false
+  become: false
+
+# - name: Copy Mercedes dashboard config to grafana.
+#   ansible.builtin.copy:
+#     src: files/mercedes-exporter.json
+#     dest: "{{ config_dir }}/internet-monitoring/grafana/provisioning/dashboards/"
+#     mode: 0644
+#   become: false
