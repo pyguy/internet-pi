@@ -54,3 +54,10 @@
     build: false
     restarted: true
   become: false
+
+- name: Restart room-assistant
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/room-assistant/"
+    build: false
+    restarted: true
+  become: false

@@ -53,3 +53,18 @@ pve_verify_ssl: false
 # MercedeMe A180 exporter configuration. (Also requires `monitoring_enable`)
 mercedes_enable: true
 mercedes_port: 8080
+
+# Room Assistant configuration
+rass_enable: true
+rass_mqttUsername: home_assistant_username
+rass_mqttPassword: home_assistant_password
+rass_instances:
+  - name: "LivingRoom"
+    hostname: kodi
+    mqttUrl: home_assistant_host:port
+    peerAddresses:
+      - peer1_host:6425
+  
+rass_bluetoothClassic:
+  addresses:
+    - 'mac_address_1 # sample phone'

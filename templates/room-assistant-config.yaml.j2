@@ -1,0 +1,31 @@
+global:
+{% for instance in rass_instances %}
+{% if instance.hostname == inventory_hostname %}
+  instanceName: {{ instance.name }}
+  integrations:
+    - homeAssistant
+    - bluetoothClassic
+
+cluster:
+  port: 6425
+  autoDiscovery: false
+  peerAddresses:
+{% for address in instance.peerAddresses %}
+    - {{ address }}
+{% endfor %}
+{% endif %}
+
+homeAssistant:
+  mqttUrl: '{{ instance.mqttUrl }}'
+{% endfor %}
+  mqttOptions:
+    username: {{ rass_mqttUsername }}
+    password: {{ rass_mqttPassword }}
+
+bluetoothClassic:
+  minRssi: -20
+  hciDeviceId: 0
+  addresses:
+{% for address in rass_bluetoothClassic.addresses %}
+    - {{ address }}
+{% endfor %}

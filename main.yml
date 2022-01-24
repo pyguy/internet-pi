@@ -62,3 +62,8 @@
       ansible.builtin.import_tasks: tasks/mercedes.yml
       tags: mercedes
       when: mercedes_enable
+
+    - name: Set up Room Assistant Monitoring.
+      ansible.builtin.import_tasks: tasks/room-assistant.yml
+      tags: rass
+      when: rass_enable

@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+---
+version: '3'
+
+services:
+  room-assistant:
+    image: mkerix/room-assistant
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+      - {{ config_dir }}/room-assistant/config.yaml:/room-assistant/config/local.yaml

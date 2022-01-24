@@ -1,0 +1,29 @@
+---
+- name: Ensure Room Assistant directory exists.
+  file:
+    path: "{{ config_dir }}/room-assistant"
+    state: directory
+    mode: 0755
+  become: false
+
+- name: Copy Room Assistant config template to Pi.
+  ansible.builtin.template:
+    src: templates/room-assistant-config.yaml.j2
+    dest: "{{ config_dir }}/room-assistant/config.yml"
+    mode: '0640'
+  become: false
+  notify: Restart room-assistant
+
+- name: Copy Room Assistant docker-compose template to Pi.
+  ansible.builtin.template:
+    src: templates/mercedes-docker-compose.yml.j2
+    dest: "{{ config_dir }}/room-assistant/docker-compose.yml"
+    mode: '0640'
+  become: false
+  notify: Restart room-assistant
+
+- name: Ensure Room Assistant Prometheus exporter is running.
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}/room-assistant/"
+    build: false
+  become: false
